@@ -1,0 +1,32 @@
+class Solution {
+
+    public List<Integer>generaterow(int n)//n=5(means 5th row generate)
+    {
+        List<Integer>midresult= new ArrayList<>();
+        int ans=1;//first element of the row
+        midresult.add(ans);
+        for(int i=1;i<n;i++)
+        {
+            ans=ans*(n-i);
+            ans=ans/i;
+            midresult.add(ans);
+        }
+        return midresult;
+    }
+
+
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> result = new ArrayList<>();
+        
+        for(int i=1;i<=numRows;i++)
+        {
+            result.add(generaterow(i));
+            
+        }
+
+        return result;
+        
+
+    }
+   
+}

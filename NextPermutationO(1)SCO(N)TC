@@ -1,0 +1,61 @@
+class Solution { //547532
+
+    public void nextPermutation(int[] nums) { //115...143500->145300->145003
+        int ind=-1;
+        int n=nums.length;
+        for(int i=n-2;i>=0;i--)
+        //finding the breakpoint
+        {                                 //here 3 is break point i.e. index 2(array index starts from 0)
+            if(nums[i]<nums[i+1])
+            {
+                ind=i;
+                break;
+            }
+        }
+        if(ind!=-1)
+        {
+            for(int j=n-1;j>ind;j--)
+            {
+             if(nums[ind]<nums[j])
+                {
+                 int temp=nums[ind];
+                 nums[ind]=nums[j];
+                 nums[j]=temp;
+                 break;
+                }
+             }
+                int start=ind+1;
+                int end=n-1;
+                while (start<end)
+                {
+                   int temp = nums[start]; 
+                   nums[start] = nums[end];
+                   nums[end] = temp;
+                   start++;
+                   end--;
+                } 
+        }
+        else
+        {   int start=0;
+            int end=n-1;
+            while (start<end)
+            {
+                int temp = nums[start]; 
+                nums[start] = nums[end];
+                nums[end] = temp;
+                start++;
+                end--;
+            } 
+        }
+
+
+    }
+}
+
+/*
+
+steps:
+1. Find the breakpoint.
+2. Swap the smallest among the large set
+3. Reverse the array
+*/

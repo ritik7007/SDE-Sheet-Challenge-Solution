@@ -18,3 +18,4 @@ class Solution {
         return 0;
     }
 }
+// this is with the help of numbsers frequency

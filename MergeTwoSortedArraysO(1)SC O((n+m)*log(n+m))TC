@@ -1,0 +1,54 @@
+import java.util.*;
+public class Solution {
+    public static void mergeTwoSortedArraysWithoutExtraSpace(long []a, long []b){
+        int alen=a.length;
+        int blen=b.length;
+        int len=alen+blen;//length of imaginary array
+        int gap=(len/2)+(len%2);//because we are taking ceiling of gap.
+        while(gap>0)
+        {
+            int left=0;
+            int right=left+gap;//placing two pointers.
+            while(right<len)
+            {
+                if(left<alen && right>=alen) //// case 1: left in a[]
+                //and right in b[]:
+                { 
+                    if(a[left]>b[right-alen])
+                    {
+                        long temp=a[left];
+                        a[left]=b[right-alen];
+                        b[right-alen]=temp;
+                    }
+
+                }
+                else if(left>=alen)//case 2: left in b and right obviously in b( as we are doing right ++ in the end)
+                {
+                    if(b[left-alen]>b[right-alen])
+                    {
+                        long temp=b[left-alen];
+                        b[left-alen]=b[right-alen];
+                        b[right-alen]=temp;
+                    }
+                }
+                else
+                {//case 3: both the pointers are in first array a.
+                    if(a[left]>a[right])
+                    {
+                        long temp=a[left];
+                        a[left]=a[right];
+                        a[right]=temp;
+                    }
+                }
+                left++;
+                right++;
+
+            }
+            if(gap==1)// break if iteration gap=1 is completed:
+                break;
+            // Otherwise, calculate new gap:
+            gap=(gap/2)+gap%2;
+
+        }
+    }
+}
